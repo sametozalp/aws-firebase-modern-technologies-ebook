@@ -1,0 +1,39 @@
+using FireSharp;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using Newtonsoft.Json.Linq;
+using Telegram.Bot;
+using Telegram.Bot.Exceptions;
+using Telegram.Bot.Polling;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
+
+namespace EBookTgBot {
+    internal class Program {
+        static async Task Main(string[] args) {
+
+            string TOKEN = "?????????????????????????????????????????????????????";
+            var bot = new TelegramBotClient(TOKEN);
+            var chatID = ????????????????????????????;
+
+            //https://ebook-78994-default-rtdb.firebaseio.com/ -> my url
+            //wsqWNqLixMrzwMNskeMr1IUQ8FpT7EgsePPUxXXy -> my secret key
+
+            IFirebaseConfig config = new FirebaseConfig {
+                AuthSecret = "wsqWNqLixMrzwMNskeMr1IUQ8FpT7EgsePPUxXXy",
+                BasePath = "https://ebook-78994-default-rtdb.firebaseio.com/"
+            };
+
+            IFirebaseClient client = new FirebaseClient(config);
+
+            Guid guid = Guid.NewGuid();
+
+            var map = new {
+                name = "New Data Body",
+                anyNumber = 3
+            };
+            await client.SetAsync(guid.ToString(), map);
+        }
+    }
+}

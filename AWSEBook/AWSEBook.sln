@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AWSEBook", "AWSEBook\AWSEBook.csproj", "{7CF01C3D-D9F5-42C5-832B-980E993EA24A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CF01C3D-D9F5-42C5-832B-980E993EA24A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF01C3D-D9F5-42C5-832B-980E993EA24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF01C3D-D9F5-42C5-832B-980E993EA24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF01C3D-D9F5-42C5-832B-980E993EA24A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {542C492D-D9A8-4353-B16E-FF879E1D46AD}
+	EndGlobalSection
+EndGlobal

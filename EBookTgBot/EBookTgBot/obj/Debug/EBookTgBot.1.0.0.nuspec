@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>EBookTgBot</id>
+    <version>1.0.0</version>
+    <authors>EBookTgBot</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="a2d0f85c747ef21059722b24efb8198707d57787" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Telegram.Bot" version="19.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\EBookTgBot\EBookTgBot\bin\Debug\net6.0\EBookTgBot.runtimeconfig.json" target="lib\net6.0\EBookTgBot.runtimeconfig.json" />
+    <file src="C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\EBookTgBot\EBookTgBot\bin\Debug\net6.0\EBookTgBot.dll" target="lib\net6.0\EBookTgBot.dll" />
+  </files>
+</package>

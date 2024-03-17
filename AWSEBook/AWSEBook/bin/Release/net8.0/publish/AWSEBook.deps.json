@@ -1,0 +1,129 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0/linux-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {},
+    ".NETCoreApp,Version=v8.0/linux-x64": {
+      "AWSEBook/1.0.0": {
+        "dependencies": {
+          "AWSSDK.S3": "3.7.306.1",
+          "Amazon.Lambda.Core": "2.2.0",
+          "Amazon.Lambda.Serialization.SystemTextJson": "2.4.1",
+          "Telegram.Bot": "19.0.0"
+        },
+        "runtime": {
+          "AWSEBook.dll": {}
+        }
+      },
+      "Amazon.Lambda.Core/2.2.0": {
+        "runtime": {
+          "lib/net8.0/Amazon.Lambda.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Amazon.Lambda.Serialization.SystemTextJson/2.4.1": {
+        "dependencies": {
+          "Amazon.Lambda.Core": "2.2.0"
+        },
+        "runtime": {
+          "lib/net8.0/Amazon.Lambda.Serialization.SystemTextJson.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "AWSSDK.Core/3.7.302.18": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.302.18"
+          }
+        }
+      },
+      "AWSSDK.S3/3.7.306.1": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.302.18"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.306.1"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "Telegram.Bot/19.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Telegram.Bot.dll": {
+            "assemblyVersion": "19.0.0.0",
+            "fileVersion": "19.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AWSEBook/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Amazon.Lambda.Core/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DHqKeD1CYocP0t1dJC/NaXfu+5k6AoqnQ1Hlu/J2mXpLpCyeJfY+tIqT5fpruDarUlU0NtdIH8zSkCjeinyb1A==",
+      "path": "amazon.lambda.core/2.2.0",
+      "hashPath": "amazon.lambda.core.2.2.0.nupkg.sha512"
+    },
+    "Amazon.Lambda.Serialization.SystemTextJson/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-X06Z8zPDZJS/xAoAntSqsxOoSSKKFJMg+0QGPRtlPt1mbP19HFXlXn+q+XqHdVWWFsiH/r7KbDIICr0nsrlwug==",
+      "path": "amazon.lambda.serialization.systemtextjson/2.4.1",
+      "hashPath": "amazon.lambda.serialization.systemtextjson.2.4.1.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.7.302.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BAXSAsq0COS7rYygiozToblZ/OJuSh6p1rKZ0ktuwnnnE+drSA4FsVAdEWL0LP/RSUwx4QuxHwk/HITHrKK9gg==",
+      "path": "awssdk.core/3.7.302.18",
+      "hashPath": "awssdk.core.3.7.302.18.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.7.306.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WMuNG6xP5Gjt2+fxeEgfu1oEQvoMZP/j5WiL3FlGhPTrU2qvfNLRT5ngBrz9q0pwokl2NcV9G1s6E9L/DZ5XlQ==",
+      "path": "awssdk.s3/3.7.306.1",
+      "hashPath": "awssdk.s3.3.7.306.1.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "Telegram.Bot/19.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q16IOitgjGoaJOuqgKQy0FeF+hr/ncmlX2esrhCC7aiyhSX7roYEriWaGAHkQZR8QzbImjFfl4eQh2IxcnOrPg==",
+      "path": "telegram.bot/19.0.0",
+      "hashPath": "telegram.bot.19.0.0.nupkg.sha512"
+    }
+  }
+}

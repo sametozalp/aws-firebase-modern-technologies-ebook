@@ -1,0 +1,163 @@
+using FireSharp;
+using FireSharp.Config;
+using FireSharp.Extensions;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Drawing;
+using System.Text.Json;
+using Telegram.Bot;
+using Telegram.Bot.Exceptions;
+using Telegram.Bot.Polling;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
+
+namespace EBookTgBot {
+    internal class Program {
+        static async Task Main(string[] args) {
+
+            string TOKEN = "???????????????????????????";
+            var bot = new TelegramBotClient(TOKEN);
+            var chatID = ???????????????????????;
+
+            using CancellationTokenSource cts = new();
+
+            ReceiverOptions receiverOptions = new() {
+                AllowedUpdates = Array.Empty<UpdateType>()
+            };
+
+            bot.StartReceiving(
+                updateHandler: HandleUpdateAsync,
+                pollingErrorHandler: HandlePollingErrorAsync,
+                receiverOptions: receiverOptions,
+                cancellationToken: cts.Token
+            );
+
+            Console.ReadLine();
+
+            cts.Cancel();
+        }
+
+        private static async Task firebaseOperationsAsync(ITelegramBotClient botClient, Message message, String messageText) {
+
+            try {
+                IFirebaseConfig config = new FirebaseConfig {
+                    AuthSecret = "wsqWNqLixMrzwMNskeMr1IUQ8FpT7EgsePPUxXXy",
+                    BasePath = "https://ebook-78994-default-rtdb.firebaseio.com/"
+                };
+
+                IFirebaseClient firebaseClient = new FirebaseClient(config);
+
+                var chatId = message.Chat.Id; // get chat id
+
+                Console.WriteLine($"Received a '{messageText}' message in chat {chatId}.");
+
+                if (messageText.Contains("/setage")) {
+
+                    string age = messageText.Replace("/setage ", "");
+                    var from = message.From.Id;
+                    var username = message.From.Username.ToString();
+
+                    var map = new {
+                        age = age,
+                        id = from,
+                        username = username
+                    };
+
+                    var response = await firebaseClient.UpdateAsync(from.ToString(), map);
+
+                    if (response.StatusCode.ToString().Equals("OK")) {
+                        await botClient.SendTextMessageAsync(chatId, "Saved your age, " + message.From.FirstName);
+                    }
+
+                } else if (messageText.Contains("/sethobby")) {
+
+                    string hobby = messageText.Replace("/sethobby ", "");
+                    var from = message.From.Id;
+                    var username = message.From.Username.ToString();
+
+                    var map = new {
+                        hobby = hobby,
+                        id = from,
+                        username = username
+                    };
+
+                    var response = await firebaseClient.UpdateAsync(from.ToString(), map);
+
+                    if (response.StatusCode.ToString().Equals("OK")) {
+                        await botClient.SendTextMessageAsync(chatId, "Saved your hobby, " + message.From.FirstName);
+                    }
+
+                } else if (messageText.Contains("/setcolor")) {
+
+                    string color = messageText.Replace("/setcolor ", "");
+                    var from = message.From.Id;
+                    var username = message.From.Username.ToString();
+
+                    var map = new {
+                        color = color,
+                        id = from,
+                        username = username
+                    };
+
+                    var response = await firebaseClient.UpdateAsync(from.ToString(), map);
+
+                    if (response.StatusCode.ToString().Equals("OK")) {
+                        await botClient.SendTextMessageAsync(chatId, "Saved your favorite color, " + message.From.FirstName);
+                    }
+                } else if (messageText.Contains("/myinfo")) {
+
+                    string info = messageText.Replace("/myinfo ", "");
+                    var from = message.From.Id;
+                    var username = message.From.Username.ToString();
+
+                    var response = await firebaseClient.GetAsync(from.ToString());
+
+                    if (response.StatusCode.ToString().Equals("OK")) {
+                        var j = response.Body;
+                        JsonDocument jsonDoc = JsonDocument.Parse(j);
+                        JsonElement root = jsonDoc.RootElement;
+
+                        await botClient.SendTextMessageAsync(
+                            chatId,
+                            "username: " + root.GetProperty("username").ToString() + "\n" +
+                            "age: " + root.GetProperty("age") + "\n" +
+                            "hobby: " + root.GetProperty("hobby") + "\n" +
+                            "color: " + root.GetProperty("color")
+                        );
+                    }
+                }
+            } catch (Exception e) {
+                var chatId = message.Chat.Id;
+                await botClient.SendTextMessageAsync(
+                           chatId,
+                           e.Message
+                       );
+            }
+        }
+
+        private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) {
+            // Process Messages updates only: https://core.telegram.org/bots/api#message
+            if (update.Message is not { } message)
+                return;
+            // Process text messages only
+            if (message.Text is not { } messageText)
+                return;
+
+            await firebaseOperationsAsync(botClient, message, messageText);
+
+        }
+
+        private static Task HandlePollingErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken) {
+            var ErrorMessage = exception switch {
+                ApiRequestException apiRequestException
+                    => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
+                _ => exception.ToString()
+            };
+
+            Console.WriteLine(ErrorMessage);
+            return Task.CompletedTask;
+        }
+    }
+}

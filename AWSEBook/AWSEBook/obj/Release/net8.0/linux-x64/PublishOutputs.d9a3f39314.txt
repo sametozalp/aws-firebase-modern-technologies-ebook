@@ -1,0 +1,10 @@
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\AWSEBook.deps.json
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\AWSEBook.runtimeconfig.json
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\AWSEBook.pdb
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\Amazon.Lambda.Core.dll
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\AWSSDK.Core.dll
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\AWSSDK.S3.dll
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\Newtonsoft.Json.dll
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\Telegram.Bot.dll
+C:\Users\Samet\Desktop\Masaüstü2\bot-ekitap\AWSEBook\AWSEBook\bin\Release\net8.0\publish\AWSEBook.dll

@@ -1,0 +1,33 @@
+﻿using System.Text.Json;
+using Telegram.Bot;
+
+namespace EBookTgBot {
+    internal class Program {
+        static async Task Main(string[] args) {
+
+            string TOKEN = "6667168047:AAHrZvVlMeFZqNaYuUPOuaM3ZHEkrg5R58I";
+            var bot = new TelegramBotClient(TOKEN);
+            var chatID = -1002054524437;
+
+
+            string apiUrl = "https://rest.coinapi.io/v1/exchangerate/BTC/USD";
+            string APIKEY = "F385536A-D91D-4542-8DAF-C9405A22A900";
+
+            using (HttpClient client = new HttpClient()) {
+                client.DefaultRequestHeaders.Add("X-CoinAPI-Key", APIKEY);
+
+                try {
+                    string jsonResult = await client.GetStringAsync(apiUrl);
+
+                    await bot.SendTextMessageAsync(chatID, jsonResult);
+
+                } catch (HttpRequestException ex) {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
+
+        }
+
+    }
+}
+     

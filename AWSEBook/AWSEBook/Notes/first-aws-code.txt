@@ -1,0 +1,43 @@
+﻿using Amazon.Lambda.Core;
+using Telegram.Bot;
+
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+
+namespace AWSEBook;
+
+public class Function
+{
+    
+    /// <summary>
+    /// A simple function that takes a string and does a ToUpper
+    /// </summary>
+    /// <param name="input">The event for the Lambda function handler to process.</param>
+    /// <param name="context">The ILambdaContext that provides methods for logging and describing the Lambda environment.</param>
+    /// <returns></returns>
+    public async Task<string> FunctionHandlerAsync(ILambdaContext context)
+    {
+        string TOKEN = "6667168047:AAHrZvVlMeFZqNaYuUPOuaM3ZHEkrg5R58I";
+        var bot = new TelegramBotClient(TOKEN);
+        var chatID = -1002054524437;
+
+
+        string apiUrl = "https://rest.coinapi.io/v1/exchangerate/BTC/USD";
+        string APIKEY = "F385536A-D91D-4542-8DAF-C9405A22A900";
+
+        using (HttpClient client = new HttpClient()) {
+            client.DefaultRequestHeaders.Add("X-CoinAPI-Key", APIKEY);
+
+            try {
+                string jsonResult = await client.GetStringAsync(apiUrl);
+
+                await bot.SendTextMessageAsync(chatID, jsonResult);
+
+            } catch (HttpRequestException ex) {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        return "runned";
+    }
+}

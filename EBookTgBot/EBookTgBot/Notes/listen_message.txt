@@ -1,0 +1,72 @@
+using Newtonsoft.Json.Linq;
+using Telegram.Bot;
+using Telegram.Bot.Exceptions;
+using Telegram.Bot.Polling;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
+
+namespace EBookTgBot {
+    internal class Program {
+        static async Task Main(string[] args) {
+
+            string TOKEN = "????????????????????????????";
+            var bot = new TelegramBotClient(TOKEN);
+            var chatID = ??????????????????????;
+
+            using CancellationTokenSource cts = new();
+
+            ReceiverOptions receiverOptions = new() {
+                AllowedUpdates = Array.Empty<UpdateType>()
+            };
+
+            bot.StartReceiving(
+                updateHandler: HandleUpdateAsync,
+                pollingErrorHandler: HandlePollingErrorAsync,
+                receiverOptions: receiverOptions,
+                cancellationToken: cts.Token
+            );
+
+            Console.ReadLine();
+
+            cts.Cancel();
+
+
+        }
+
+        private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) {
+            // Process Messages updates only: https://core.telegram.org/bots/api#message
+            if (update.Message is not { } message)
+                return;
+            // Process text messages only
+            if (message.Text is not { } messageText)
+                return;
+
+            var chatId = message.Chat.Id; // get chat id
+
+            Console.WriteLine($"Received a '{messageText}' message in chat {chatId}.");
+
+            if (messageText.Equals("John")) {
+                Message sentMessage = await botClient.SendTextMessageAsync(
+                chatId: chatId,
+                text: "How are you John ?",
+                cancellationToken: cancellationToken);
+            } else {
+                Message sentMessage = await botClient.SendTextMessageAsync(
+                chatId: chatId,
+                text: "You said:\n" + messageText,
+                cancellationToken: cancellationToken);
+            }
+        }
+
+        private static Task HandlePollingErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken) {
+            var ErrorMessage = exception switch {
+                ApiRequestException apiRequestException
+                    => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
+                _ => exception.ToString()
+            };
+
+            Console.WriteLine(ErrorMessage);
+            return Task.CompletedTask;
+        }
+    }
+}
